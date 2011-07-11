@@ -11,3 +11,5 @@ All plugins are tested against recent versions of Chrome, Safari, and Firefox, a
 ## Usage
 
 [See the wiki](https://github.com/kurbmedia/motr.js/wiki "See the wiki") for more info.
+
+Check out the source for various configuration options and methods.
