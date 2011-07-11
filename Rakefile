@@ -55,7 +55,7 @@ def compile_core
 end
 
 def compile_edit
-  files = ['clean.js','rangy.js','edit.js','commands.js'].inject([]) do |array, path|
+  files = ['xhtml.js','rangy.js','edit.js','commands.js'].inject([]) do |array, path|
     array << "#{root_path}/edit/#{path}"
     array
   end

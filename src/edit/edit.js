@@ -17,10 +17,8 @@
 		}
 	});
 	
-	cleanup = {
-		bodyOnly:false,
-		allowedTags: ['a', 'b', 'blockquote', 'br', 'cite', 'em', 'i', 'li', 'ol', 'p', 'strike', 'strong', 'sub', 'sup', 'u', 'ul']
-	};
+	XHTMLParser.whitelist = ['a', 'blockquote', 'br', 'cite', 'em', 'i', 'li', 'ol', 'p', 'strike', 'strong', 'sub', 'sup', 'u', 'ul'];
+	XHTMLParser.blacklist = ["basefont", "center", "dir", "font", "frame", "frameset", "iframe", "isindex", "menu", "noframes", "s", "strike", "script", "input", "form"];
 	
 	function semantify( element ) {
 		var html = element.html();
@@ -209,13 +207,11 @@
 			
 			range: {},
 						
-			save: function( target ){
-				
+			save: function( target ){				
 				if( target ) target = jQuery(target);
 				semantify(element);
 				sanitize( element );
-				element.htmlClean(cleanup);
-				element.html( jQuery.trim(element.html()) );
+				element.html( jQuery.trim( XHTMLParser.clean(element.html()) ) );
 				element.trigger('change');
 				
 				// Optionally save the html into some sort of input.
