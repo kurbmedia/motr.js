@@ -1,0 +1,12 @@
+/**
+ * motr.js, a jQuery plugin library for common functions such as text editing, form validation and misc jQueryUI alternative plugins.
+ * http://kurbmedia.github.com/motr.js/
+ *
+ * @PACKAGE
+ * @DESCRIPTION
+ *
+ * Copyright @YEAR, Brent Kirby / kurb media llc.
+ * Licensed under the MIT license.
+ * Version: @VERSION
+ * Build date: @TIMESTAMP
+ */

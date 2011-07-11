@@ -23,18 +23,6 @@
 		allowedTags: ['a', 'b', 'blockquote', 'br', 'cite', 'em', 'i', 'li', 'ol', 'p', 'strike', 'strong', 'sub', 'sup', 'u', 'ul']
 	};
 	
-	sanitizer = new Sanitize({ 
-	    elements: cleanup.allowedTags,
-	    attributes: { 
-	        a: ['href', 'title'], 
-	        span: ['class'] 
-	    },
-	    protocols: { 
-	        a: { href: ['http', 'https', 'mailto'] }
-	    }
-	});
-	
-	
 	function semantify( element ) {
 		var html = element.html();
 		html = html.replace(/<i>/g, '<em>')
@@ -65,6 +53,18 @@
 			}
 		});
     }
+
+	function sanitize( element ){
+		element.find("[style]").each(function(){
+			jQuery(this).attr('style');
+		});
+		
+		element.find("script, :input, form").each(function(){
+			jQuery(this).remove();
+		});
+		
+		return element;
+	}
 	
 	function save_selection( element, selection ) {
 		var index = 0, 
@@ -289,6 +289,7 @@
 			.bind('change.edit', 
 				function( event ){
 					semantify( element );
+					sanitize( element );
 					restore_selection( node, self.selection );
 					return true;
 			})
