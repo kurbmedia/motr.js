@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>motr.js editor test</title>
+	<meta name="description" content=""/>
+	<link rel="stylesheet" href="screen.css" type="text/css" media="screen" charset="utf-8" />
+	<style type="text/css" media="screen">
+		form ol{ width:400px; float:left; }
+	</style>
+	<script src="../lib/jquery-1.6.2.js" type="text/javascript"></script>
+	<script src="../src/core.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../src/forms/inputs.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../src/forms/validity.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" charset="utf-8">
+	jQuery(function(){	
+		
+		var msg = "<span class='error-for-field'></span>";
+								
+		jQuery(':input').bind('invalid', 
+			function(event){
+				var span = jQuery(msg);
+				jQuery(this).addClass('field-with-error');
+				jQuery(this).next('span.error-for-field').remove();
+				span.insertAfter(jQuery(this));
+				span.text( this.validationMessage );						
+				jQuery(this).parent('li').addClass('field-with-errors');
+			})
+			.bind('valid', function(event){
+				event.preventDefault();
+				jQuery(this).removeClass('field-with-error');
+				jQuery(this).next('span.error-for-field').remove();
+				jQuery(this).parent('li').removeClass('field-with-errors');
+			});
+	});
+	</script>
+</head>
+<body>
+	<div id="wrapper">
+		<h1>motr.js: <small>forms / validity test</small></h1>
+		<form action='' method='post'>
+			<ol>
+				<li>
+					<label for='text_field'>Text Field</label>					
+					<input type="text" name="text_field" value="" id="text_field" />
+					<span class='hint tool-tip'>hint for the field</span>
+				</li>
+				<li>
+					<label for='email_field'>Email Field</label>
+					<input type="email" name="email_field" required='true' value="" id="email_field" />
+					<span class='hint'>a valid email</span>
+				</li>
+				<li class='field-with-errors'>
+					<label for='error_field'>Error Field</label>
+					<input type="text" name="error_field" value="" id="error_field" />
+					<span class='error-for-field'>this field has an error</span>
+					<span class='hint'>hint for the field</span>
+				</li>
+			</ol>
+			<ol>
+				<li>
+					<label for='number_field'>Number Field</label>
+					<input type="number" name='number_field' id="number_field" />
+				</li>
+			</ol>
+			<p style='clear:both'><input type="submit" value='submit' /></p>
+		</form>
+	</div>
+</body>
+</html>

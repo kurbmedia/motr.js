@@ -268,11 +268,14 @@ form fieldset {
   border: 1px solid #cccccc;
 }
 form input.text, form input.title, form input[type=email], form input[type=text], form input[type=password],
+form input[type=number],
 form textarea {
   background-color: #fff;
   border: 1px solid #bbbbbb;
 }
-form input.text:focus, form input.title:focus, form input[type=email]:focus, form input[type=text]:focus, form input[type=password]:focus,
+form input.text:focus, form input.title:focus, form input[type=email]:focus, form input[type=text]:focus, 
+form input[type=password]:focus,
+form input[type=number]:focus,
 form textarea:focus {
   border: 1px solid #666666;
 }
@@ -292,7 +295,9 @@ form legend {
   font-weight: bold;
   font-size: 1.2em;
 }
-form input.text, form input.title, form input[type=email], form input[type=text], form input[type=password] {
+form input.text, form input.title, form input[type=email], form input[type=text], form input[type=password],
+form input[type=number]
+{
   margin: 0.5em 0;
   background-color: white;
   padding: 5px;
@@ -331,6 +336,8 @@ form ol.split li input[type=password],
 form form ol li ol li input[type=password], form ol li
 form ol li input[type=password],
 form ol.split li input[type=email],
+form form ol li ol li input[type=number], form ol li
+form ol li input[type=number],
 form form ol li ol li input[type=email], form ol li
 form ol li input[type=email] {
   display: block;
@@ -393,6 +400,7 @@ form label abbr {
   color: red;
 }
 form input[type=text],
+form input[type=number],
 form input[type=password],
 form input[type=email],
 form textarea {
@@ -406,6 +414,7 @@ form textarea {
   padding: .65em;
 }
 form input[type=text]:focus,
+form input[type=number]:focus,
 form input[type=password]:focus,
 form input[type=email]:focus,
 form textarea:focus {
@@ -441,9 +450,13 @@ form input[type=checkbox], form input[type=radio] {
   *display: inline;
 }
 form li.field-with-errors input[type=text],
+form li.field-with-errors input[type=number],
 form li.field-with-errors input[type=password],
 form li.field-with-errors input[type=email],
-form li.field-with-errors textarea, form span.field_with_errors input[type=text], form span.field_with_errors input[type=password], form span.field_with_errors input[type=email], form span.field_with_errors textarea {
+form li.field-with-errors textarea, form span.field_with_errors input[type=text], 
+form span.field_with_errors input[type=password], form span.field_with_errors input[type=email], 
+form span.field_with_errors input[type=number], 
+form span.field_with_errors textarea {
   border: 1px solid #e41d38;
   background: #fde0e4;
 }
@@ -572,4 +585,14 @@ form li:hover span.tool-tip {
   position: absolute;
   top: 1em;
   right: 0px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+a.inner-spin-button, a.outer-spin-button{
+	color:#333; line-height:130%; font-size:10px;
 }
