@@ -1,0 +1,575 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+q, blockquote {
+  quotes: none;
+}
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+a img {
+  border: none;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1.5;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  color: #333333;
+  font-size: 75%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+  color: #222222;
+}
+h1 img, h2 img, h3 img, h4 img, h5 img, h6 img {
+  margin: 0;
+}
+
+h1 {
+  font-size: 2.5em;
+  line-height: 1;
+  font-weight:bold;
+  padding-bottom:0.750em;
+  margin-bottom: 0.750em;
+  border-bottom:1px solid #eee;
+}
+h1 small{ 
+	font-weight:normal; 
+	color:#777; 
+	display:inline-block; 
+	zoom:1; 
+	padding-left:1em; 
+	font-size:.75em;
+}
+
+h2 {
+  font-size: 2em;
+  margin-bottom: 0.75em;
+}
+
+h3 {
+  font-size: 1.5em;
+  line-height: 1;
+  margin-bottom: 1.00em;
+}
+
+h4 {
+  font-size: 1.2em;
+  line-height: 1.25;
+  margin-bottom: 1.25em;
+}
+
+h5 {
+  font-size: 1em;
+  font-weight: bold;
+  margin-bottom: 1.50em;
+}
+
+h6 {
+  font-size: 1em;
+  font-weight: bold;
+}
+
+p {
+  margin: 0 0 1.5em;
+}
+p .left {
+  display: inline;
+  float: left;
+  margin: 1.5em 1.5em 1.5em 0;
+  padding: 0;
+}
+p .right {
+  display: inline;
+  float: right;
+  margin: 1.5em 0 1.5em 1.5em;
+  padding: 0;
+}
+
+a {
+  text-decoration: underline;
+  color: #0000aa;
+}
+a:visited {
+  color: #004c99;
+}
+a:focus {
+  color: #0099ff;
+}
+a:hover {
+  color: #0099ff;
+}
+a:active {
+  color: #bf00ff;
+}
+
+blockquote {
+  margin: 1.5em;
+  color: #666666;
+  font-style: italic;
+}
+
+strong, dfn {
+  font-weight: bold;
+}
+
+em, dfn {
+  font-style: italic;
+}
+
+sup, sub {
+  line-height: 0;
+}
+
+abbr, acronym {
+  border-bottom: 1px dotted #666666;
+}
+
+address {
+  margin: 0 0 1.5em;
+  font-style: italic;
+}
+
+del {
+  color: #666666;
+}
+
+pre {
+  margin: 1.5em 0;
+  white-space: pre;
+}
+
+pre, code, tt {
+  font: 1em "andale mono", "lucida console", monospace;
+  line-height: 1.5;
+}
+
+li ul, li ol {
+  margin: 0;
+}
+
+ul, ol {
+  margin: 0 1.5em 1.5em 0;
+  padding-left: 1.5em;
+}
+
+ul {
+  list-style-type: disc;
+}
+
+ol {
+  list-style-type: decimal;
+}
+
+dl {
+  margin: 0 0 1.5em 0;
+}
+dl dt {
+  font-weight: bold;
+}
+
+dd {
+  margin-left: 1.5em;
+}
+
+table {
+  margin-bottom: 1.4em;
+  width: 100%;
+}
+
+th {
+  font-weight: bold;
+}
+
+thead th {
+  background: #c3d9ff;
+}
+
+th, td, caption {
+  padding: 4px 10px 4px 5px;
+}
+
+table.striped tr:nth-child(even) td,
+table tr.even td {
+  background: #e5ecf9;
+}
+
+tfoot {
+  font-style: italic;
+}
+
+caption {
+  background: #eeeeee;
+}
+
+.quiet {
+  color: #666666;
+}
+
+.loud {
+  color: #111111;
+}
+
+body {
+  font-size: 75%;
+  line-height: 2em;
+}
+
+html > body {
+  font-size: 12px;
+}
+
+form fieldset {
+  border: 1px solid #cccccc;
+}
+form input.text, form input.title, form input[type=email], form input[type=text], form input[type=password],
+form textarea {
+  background-color: #fff;
+  border: 1px solid #bbbbbb;
+}
+form input.text:focus, form input.title:focus, form input[type=email]:focus, form input[type=text]:focus, form input[type=password]:focus,
+form textarea:focus {
+  border: 1px solid #666666;
+}
+form select {
+  background-color: #fff;
+  border-width: 1px;
+  border-style: solid;
+}
+form label {
+  font-weight: bold;
+}
+form fieldset {
+  padding: 1.4em;
+  margin: 0 0 1.5em 0;
+}
+form legend {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+form input.text, form input.title, form input[type=email], form input[type=text], form input[type=password] {
+  margin: 0.5em 0;
+  background-color: white;
+  padding: 5px;
+}
+form input.title {
+  font-size: 1.5em;
+}
+form textarea {
+  margin: 0.5em 0;
+  padding: 5px;
+}
+form select {
+  margin: 0.5em 0;
+}
+form ol.split, form ol li ol {
+  display: block;
+  clear: both;
+  margin: -0.5em 0px;
+  *zoom: 1;
+}
+form ol.split:after, form ol li ol:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+form ol.split li, form ol li ol li {
+  float: left;
+  margin: 0px 1em 0px 0px;
+  vertical-align: middle;
+}
+form ol.split li label[type=text], form ol li ol li label[type=text], form ol.split li label[type=password], form ol li ol li label[type=password], form ol.split li label[type=email], form ol li ol li label[type=email],
+form ol.split li input[type=text],
+form form ol li ol li input[type=text], form ol li
+form ol li input[type=text],
+form ol.split li input[type=password],
+form form ol li ol li input[type=password], form ol li
+form ol li input[type=password],
+form ol.split li input[type=email],
+form form ol li ol li input[type=email], form ol li
+form ol li input[type=email] {
+  display: block;
+}
+form ol.split li select, form ol li ol li select {
+  margin: .75em 0px;
+}
+form ol {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+  padding-right: 10px;
+}
+form ol li {
+  padding: .5em 0px;
+}
+form ol li.clear {
+  clear: both;
+}
+form ol li.buttons {
+  clear: both;
+  padding: .25em 0px 0px 0px;
+}
+form ol li.inline label {
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+}
+form ol li.inline label {
+  *display: inline;
+}
+form ol li.multifield input, form ol li.multifield select {
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+}
+form ol li.multifield input, form ol li.multifield select {
+  *display: inline;
+}
+form ol label {
+  display: block;
+}
+form ol.inline li.label {
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+}
+form ol.inline li.label {
+  *display: inline;
+}
+form label abbr {
+  outline: none;
+  border: none;
+  color: red;
+}
+form input[type=text],
+form input[type=password],
+form input[type=email],
+form textarea {
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -o-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -khtml-border-radius: 2px;
+  border-radius: 2px;
+  font-size: .95em;
+  padding: .65em;
+}
+form input[type=text]:focus,
+form input[type=password]:focus,
+form input[type=email]:focus,
+form textarea:focus {
+  outline: none;
+  border-color: #666666;
+}
+form select {
+  border-style: solid;
+}
+form select:focus {
+  outline: none;
+}
+form select[multiple=multiple] {
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -o-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -khtml-border-radius: 2px;
+  border-radius: 2px;
+  border-color: #bbbbbb;
+}
+form input[type=checkbox], form input[type=radio] {
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  margin-right: 1em;
+  vertical-align: baseline;
+  width: auto;
+}
+form input[type=checkbox], form input[type=radio] {
+  *display: inline;
+}
+form li.field-with-errors input[type=text],
+form li.field-with-errors input[type=password],
+form li.field-with-errors input[type=email],
+form li.field-with-errors textarea, form span.field_with_errors input[type=text], form span.field_with_errors input[type=password], form span.field_with_errors input[type=email], form span.field_with_errors textarea {
+  border: 1px solid #e41d38;
+  background: #fde0e4;
+}
+form li.field-with-errors label, form span.field_with_errors label {
+  color: #bd132a;
+}
+form li.field-with-errors span.hint, form span.field_with_errors span.hint {
+  display: none;
+}
+form li.field-with-errors span.error_for_field,
+form li.field-with-errors span.errors_for_field,
+form li.field-with-errors span.error-for-field,
+form li.field-with-errors span.errors-for-field, form span.field_with_errors span.error_for_field, form span.field_with_errors span.errors_for_field, form span.field_with_errors span.error-for-field, form span.field_with_errors span.errors-for-field {
+  font-size: .95em;
+  line-height: .95em;
+  color: #bd132a;
+  display: block;
+}
+form span.hint {
+  font-size: .95em;
+  line-height: .95em;
+  font-weight: normal;
+  color: #999999;
+  display: block;
+}
+form label {
+  font-size: 12px;
+  height: 20px;
+}
+form fieldset {
+  border: none;
+}
+
+a.button, button.button {
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  margin: 0;
+  width: auto;
+  line-height: 1.3em;
+  overflow: visible;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 1em;
+  padding: 0.75em 1.5em;
+  border: 0;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+  -ms-user-select: none;
+  -khtml-user-select: none;
+  user-select: none;
+}
+a.button, button.button {
+  *display: inline;
+}
+a.button::-moz-focus-inner, button.button::-moz-focus-inner {
+  border: none;
+  padding: 0;
+}
+a.button:focus, button.button:focus {
+  outline: none;
+}
+
+#wrapper {
+  width: 960px;
+  margin: 0 auto;
+  padding:2em 0;
+}
+
+
+form li {
+  position: relative;
+}
+form li input[type=text], form li input[type=password], form li input[type=email] {
+  width: 200px;
+}
+form li span.tool-tip {
+  background: black;
+  color: white;
+  padding: .75em 1em;
+  position: relative;
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  display: none;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+}
+form li span.tool-tip {
+  *display: inline;
+}
+form li span.tool-tip:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 0;
+  border-width: 7px 7px 0;
+  border-style: solid;
+  border-color: black transparent;
+  border-color: inherit transparent;
+  left: -7px;
+  border-width: 7px 12.6px 7px 0;
+  top: 50%;
+  margin-top: -7px;
+  border-color: transparent black;
+}
+form li span.tool-tip {
+  *display: inline;
+}
+form li:hover span.tool-tip {
+  display: block;
+  position: absolute;
+  top: 1em;
+  right: 0px;
+}
