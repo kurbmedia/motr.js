@@ -6,9 +6,10 @@
 		NumberInput,
 		Placeholder;		
 	
-	motr.forms = {};
-	motr.forms.enable  = inputs;
-	motr.forms.support = {};
+	motr.forms = {
+		enable: inputs,
+		support: {}
+	};
 	
 	// Extend jquery expressions to support various html5 elements
 
@@ -27,8 +28,7 @@
 		var element = jQuery('#__test_input_field').get(0);
 			tester  = "(wee);";	
 
-		if( motr.forms.support[type] != null ) 
-			return motr.forms.support[type];
+		if( motr.forms.support[type] != null ) return motr.forms.support[type];
 			
 		element.setAttribute('type', type);		
 		
@@ -44,9 +44,8 @@
 						
 			element.value = tester;
 			
-			if( /^(url|email)$/.test(type) ){
+			if( /^(url|email)$/.test(type) ) 
 				return (element.checkValidity && element.checkValidity() === false);
-			}			
 			return element.value != tester;			
 		}				
 		return false;

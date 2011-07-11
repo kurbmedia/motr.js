@@ -11,7 +11,6 @@
 			'underline': ['control', 85],
 			'italic': ['control', 73],
 			'undo': ['control', 90],
-			'copy': ['control', 67],
 			'paste': ['control', 86],
 			'undo': ['control', 90],
 			'cut': ['control', 88]
@@ -138,7 +137,6 @@
 	    try{ traverse( element ); }
 		catch (ex) {
 	        if( ex == stop ) rangy.getSelection().setSingleRange(range);
-			else throw ex;
 	    }
 	}
 	
@@ -173,7 +171,8 @@
 			
 			exec: function( command, args ){				
 				var cmd, sel, update;
-				element.focus();
+				element.focus();	
+							
 				
 				if( command === 'undo' ){
 					undo_stack.pop();
@@ -186,12 +185,12 @@
 					else document.execCommand(command, false, (args || null));
 					
 					// Store current state.
-					undo_stack.push(element.html());			
-					
+					undo_stack.push(element.html());					
 				}
-				
+								
+				element.trigger('change.edit');
 				restore_selection( node, this.selection );
-				element.trigger('change.edit');	
+				
 				return true;
 				
 			},
@@ -214,6 +213,7 @@
 				
 				if( target ) target = jQuery(target);
 				semantify(element);
+				sanitize( element );
 				element.htmlClean(cleanup);
 				element.html( jQuery.trim(element.html()) );
 				element.trigger('change');
@@ -274,9 +274,9 @@
 			});
 			
 			if( control && !( event.ctrlKey || event.metaKey )) return true;
-			if( keyval ){
-				self.exec( action );
+			if( keyval ){				
 				event.preventDefault();
+				self.exec( action );
 				return false;
 			}
 			
@@ -288,9 +288,7 @@
 		element
 			.bind('change.edit', 
 				function( event ){
-					semantify( element );
-					sanitize( element );
-					restore_selection( node, self.selection );
+					semantify( element );					
 					return true;
 			})
 			.bind('paste.edit', 
@@ -304,42 +302,43 @@
 						return false;
 					}
 					
-					if( clipevent.clipboardData ){
-						content = clipevent.clipboardData.getData('text/html');
-					}else{
-						
-					}
+					if( clipevent.clipboardData ) content = clipevent.clipboardData.getData('text/html');
+					else content = "";
+
 					if( content ){
 						if( jQuery(content).get(0) ){
-							content = sanitizer.clean_node(jQuery(content).get(0));
+							content = jQuery("<div></div>").html(content).text();
 							self.range.insertNode( content );
-						}else{
-							document.execCommand('insertHTML', false, content);
-						}
+						}else document.execCommand('insertHTML', false, content);
 					}					
 					return false;
 			})			
-			.bind('keyup.edit', 
+			.bind('keypress.edit', 
 				function(event){				
 					// Cancel carriage returns on inline editors, and prevent backspace removing all content.				
-					var len = jQuery.trim( element.text() ).length;
+					var len;
 
 					if( mode == 'inline' && event.which === 13){
-						event.stopPropagation();
 						event.preventDefault();
+						event.stopPropagation();
 						return false;
 		        	}
+		
+		 			len = jQuery.trim( element.text() ).length;
+		
 		        	if( event.which == 8 &&  len == 0 ){
 						event.preventDefault();
 						event.stopPropagation();
 						if( mode == 'block' && element.is(":empty") ) element.append("<p></p>");
 						return false;
 		        	}
+		
+					return true;
 			})
 			.bind('keydown.edit', process_shortcut)
 			.bind('mouseup.edit blur.edit mouseout.edit', 
 				function(event){	
-					update_selected();			
+					update_selected();
 					return true;
 				})
 			.bind('mousedown.edit', 

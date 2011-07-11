@@ -81,7 +81,7 @@ def write_stream(file, stream, name, desc)
   append   = copyright.dup.gsub(/(@[A-Z]+)/i){ |match| mangles[match] }    
   stream   = stream.gsub(/(@[A-Z]+)/i){ |match| mangles[match] }
   version  = mangles['@VERSION']
-  minified = Uglifier.compile(stream, max_line_length: 500, squeeze: true, copyright: false)
+  minified = Uglifier.compile(stream, :max_line_length => 500, :squeeze => true, :copyright => false)
   
   File.open(filename(file, version), 'w') do |file|
     file.puts(append)
