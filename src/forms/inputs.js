@@ -3,7 +3,8 @@
 	var motr = window.motr,
 		inputs = [ 'email', 'url', 'number', 'range', 'date' ],
 		numericKeys = [48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 190, 8],
-		NumberInput;		
+		NumberInput,
+		Placeholder;		
 	
 	motr.forms = {
 		enable: inputs,
@@ -104,29 +105,66 @@
 		
 	};
 	
+	Placeholder = function( element ){
+		
+		var self  = this,
+			color = element.css("color"),
+			text  = element.attr('placeholder');
+			
+		element.attr('placeholder');
+		
+		function desaturate(){
+			var rgb   = element.css('color'), i, hex,
+				parts = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/),
+				r, g, b;
+			
+			delete(parts[0]);				
+			r = parts[1];
+			g = parts[2];
+			b = parts[3];
+			
+			for (i = 1; i <= 3; ++i) {
+			    parts[i] = parseInt(parts[i], 0).toString(16);
+			    if (parts[i].length == 1) parts[i] = '0' + parts[i];
+			}
+			
+			hex = parts.join('');
+			
+			if( jQuery.browser.msie && jQuery.browser.version <= 8 ){
+				hex = "#66"+hex;
+				element.css({ color: "filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="+hex+",endColorstr="+hex+");" });
+			}else element.css({ color: "rgba(" + [r, g, b, 0.5].join(", ") + ")" });
+			
+		}
+		
+		function trim( txt ){
+			return jQuery.trim(txt);
+		}
+		
+		element.bind('blur.placeholder', 
+			function( event ){
+				if( trim(element.val()) == "" ){
+					element.val( text );
+					desaturate();
+				}else element.css('color', color);
+			})
+			.bind('focus.placeholder', 
+			function( event ){
+				if( trim(element.val()) == text )
+					element.val('')
+						.css('color', color);
+					
+			});
+		
+	};
+	
 	jQuery.fn.placeholder = function(){
 	
 		this.each( function(){
 			var self = jQuery(this);
 			if( self.data('placeholder') ) return true;
 			
-			self.data('placeholder', self.attr('placeholder') );
-			self.get(0).removeAttribute('placeholder');
-			
-			self.bind('blur.placeholder', 
-				function( event ){
-					if( jQuery.trim(self.val()) == "" ){
-						self.val( self.data('placeholder') )
-							.addClass('placeholder-text');
-					}else self.removeClass('placeholder-text');
-				})
-				.bind('focus.placeholder', 
-				function( event ){
-					if( jQuery.trim(self.val()) == self.data('placeholder') )
-						self.val('').removeClass('placeholder-text');
-						
-				});
-				
+			self.data('placeholder', new Placeholder( jQuery(this) ) );
 			self.trigger('blur.placeholder');				
 			
 			return true;
