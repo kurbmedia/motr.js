@@ -17,6 +17,6 @@
 	};
 	
 	jQuery.motr = root.motr;
-	jQuery.motr.version = "0.0.1";
+	jQuery.motr.version = "@VERSION";
 	
 }).call(this);

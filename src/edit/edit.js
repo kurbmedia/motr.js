@@ -60,6 +60,7 @@
 			jQuery(this).remove();
 		});
 		
+		element.html( jQuery.trim( XHTMLParser.clean(element.html()) ) );
 		return element;
 	}
 	
@@ -210,8 +211,7 @@
 			save: function( target ){				
 				if( target ) target = jQuery(target);
 				semantify(element);
-				sanitize( element );
-				element.html( jQuery.trim( XHTMLParser.clean(element.html()) ) );
+				sanitize( element );				
 				element.trigger('change');
 				
 				// Optionally save the html into some sort of input.

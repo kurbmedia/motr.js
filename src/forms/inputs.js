@@ -3,8 +3,7 @@
 	var motr = window.motr,
 		inputs = [ 'email', 'url', 'number', 'range', 'date' ],
 		numericKeys = [48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 190, 8],
-		NumberInput,
-		Placeholder;		
+		NumberInput;		
 	
 	motr.forms = {
 		enable: inputs,
@@ -50,7 +49,7 @@
 		}				
 		return false;
 	}
-	
+
 	NumberInput = function( element, options ){
 		var self = this,
 			node = element.get(0),
@@ -105,6 +104,38 @@
 		
 	};
 	
+	jQuery.fn.placeholder = function(){
+	
+		this.each( function(){
+			var self = jQuery(this);
+			if( self.data('placeholder') ) return true;
+			
+			self.data('placeholder', self.attr('placeholder') );
+			self.get(0).removeAttribute('placeholder');
+			
+			self.bind('blur.placeholder', 
+				function( event ){
+					if( jQuery.trim(self.val()) == "" ){
+						self.val( self.data('placeholder') )
+							.addClass('placeholder-text');
+					}else self.removeClass('placeholder-text');
+				})
+				.bind('focus.placeholder', 
+				function( event ){
+					if( jQuery.trim(self.val()) == self.data('placeholder') )
+						self.val('').removeClass('placeholder-text');
+						
+				});
+				
+			self.trigger('blur.placeholder');				
+			
+			return true;
+		});
+		
+		return this;
+	
+	};
+	
 	jQuery.fn.numberinput = function( options ){
 		
 		this.each(function(){
@@ -140,6 +171,8 @@
 				jQuery(":"+ele)[ele + "input"]();
 			}
 		});
+		
+		jQuery("[placeholder]").placeholder();
 		
 	});
 	
